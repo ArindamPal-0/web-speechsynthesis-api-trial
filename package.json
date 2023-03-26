@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "build:base": "tsc && vite build --base /base/",
     "preview": "vite preview",
+    "preview:base": "vite preview --base /base/",
     "format": "prettier --write src"
   },
   "dependencies": {
