@@ -45,7 +45,7 @@ function App() {
     }
 
     function handlePlayOrResume() {
-        if (speechSynthesis.paused) {
+        if (playState === "paused") {
             speechSynthesis.resume();
         } else {
             const utterance = new SpeechSynthesisUtterance(text);
