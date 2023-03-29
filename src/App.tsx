@@ -73,24 +73,19 @@ function App() {
     }
 
     return (
-        <div className="flex min-h-screen flex-col items-center justify-center gap-10">
+        <div className="container mx-auto flex min-h-screen touch-none select-none flex-col items-center justify-center gap-5 md:gap-10">
             <header>
-                <h1 className="text-3xl font-bold text-slate-600 underline">
+                <h1 className="text-xl font-bold text-slate-600 underline md:text-3xl">
                     Speech Synthesis!
                 </h1>
             </header>
-            <main className="flex flex-col gap-3">
+            <main className="flex flex-col gap-3 md:gap-5">
                 {/* Form Section */}
-                <form className="flex flex-col items-center justify-start gap-1">
-                    {/* <input
-                        type="text"
-                        className="w-full rounded border border-slate-300 p-1"
-                        placeholder="Enter text..."
-                    /> */}
-                    <div className="flex items-center justify-center gap-1 text-slate-600">
+                <form className="container flex flex-col items-center justify-start gap-3 md:gap-5">
+                    <div className="container flex flex-col items-center justify-center gap-1 text-slate-600 md:flex-row">
                         <label htmlFor="selectVoice">Select Voice:</label>
                         <select
-                            className="rounded border-2 border-slate-400 p-1 font-semibold text-slate-600 disabled:border-slate-200 disabled:text-slate-300"
+                            className=" rounded border-2 border-slate-400 p-1 text-sm font-semibold text-slate-600 disabled:border-slate-200 disabled:text-slate-300"
                             title="Select voice"
                             id="selectVoice"
                             onChange={handleChangeVoice}
@@ -105,13 +100,10 @@ function App() {
                             ))}
                         </select>
                     </div>
-                    {/* <button className="rounded bg-slate-500 px-3 py-2 text-white hover:bg-slate-700">
-                        Synthesize
-                    </button> */}
                 </form>
                 {/* Control Section */}
                 <section className="mx-auto flex items-center justify-center gap-4 rounded border-2 border-slate-400 px-3 py-1">
-                    <h3 className="text-xl font-semibold text-slate-600">
+                    <h3 className="text-md font-semibold text-slate-600 md:text-xl">
                         Controls:
                     </h3>
                     {/* Play Button */}
@@ -155,7 +147,10 @@ function App() {
                     </button>
                 </section>
                 {/* Wave viz */}
-                <section className="mx-auto flex h-40 w-40 items-center justify-center rounded-full border bg-neutral-900">
+                <section
+                    className="mx-auto flex h-20 w-20 items-center justify-center rounded-full border bg-neutral-900 md:h-40 md:w-40"
+                    title="sound wave indicator"
+                >
                     {playState === "playing" ? (
                         <img
                             className="h-full rounded-full"
@@ -168,7 +163,7 @@ function App() {
                 </section>
 
                 <span
-                    className="mx-auto text-xl text-slate-600"
+                    className="mx-auto text-lg text-slate-600 md:text-xl"
                     title="play state"
                 >
                     {playState}
