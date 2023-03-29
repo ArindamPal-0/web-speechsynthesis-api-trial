@@ -79,9 +79,9 @@ function App() {
     }
 
     return (
-        <div className="container mx-auto flex min-h-screen touch-none select-none flex-col items-center justify-center gap-5 md:gap-10">
+        <div className="container mx-auto flex min-h-screen touch-pan-x touch-pan-y select-none flex-col items-center justify-center gap-5 md:gap-10">
             <header>
-                <h1 className="text-xl font-bold text-slate-600 underline md:text-3xl">
+                <h1 className="text-2xl font-bold text-slate-600 underline md:text-3xl">
                     Speech Synthesis!
                 </h1>
             </header>
