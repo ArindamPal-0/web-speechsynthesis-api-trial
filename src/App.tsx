@@ -7,13 +7,12 @@ import { stories } from "./story_db/db";
 
 const speechSynthesis = window.speechSynthesis;
 
-const text = stories[0].content;
-
 type PlayState = "playing" | "paused" | "stopped";
 
 function App() {
     const [playState, setPlayState] = useState<PlayState>("stopped");
     const [selectedVoice, setSelectedVoice] = useState("");
+    const [selectedStory, setSelectedStory] = useState(0);
 
     useEffect(() => {
         setPlayState("stopped");
@@ -24,6 +23,7 @@ function App() {
             speechSynthesis.cancel();
             setPlayState("stopped");
             setSelectedVoice("");
+            setSelectedStory(0);
         };
     }, []);
 
@@ -44,11 +44,17 @@ function App() {
         setSelectedVoice(e.currentTarget.value);
     }
 
+    function handleStoryChange(e: React.ChangeEvent<HTMLSelectElement>) {
+        setSelectedStory(parseInt(e.currentTarget.value));
+    }
+
     function handlePlayOrResume() {
         if (playState === "paused") {
             speechSynthesis.resume();
         } else {
-            const utterance = new SpeechSynthesisUtterance(text);
+            const utterance = new SpeechSynthesisUtterance(
+                stories[selectedStory].content
+            );
             for (const voice of speechSynthesis.getVoices()) {
                 if (voice.name === selectedVoice) {
                     utterance.voice = voice;
@@ -79,10 +85,10 @@ function App() {
                     Speech Synthesis!
                 </h1>
             </header>
-            <main className="flex flex-col gap-3 md:gap-5">
+            <main className="container flex flex-col gap-3 md:gap-5">
                 {/* Form Section */}
-                <form className="container flex flex-col items-center justify-start gap-3 md:gap-5">
-                    <div className="container flex flex-col items-center justify-center gap-1 text-slate-600 md:flex-row">
+                <form className="flex w-full flex-col items-center justify-start gap-3 md:gap-5">
+                    <div className="flex flex-col items-center justify-center gap-1 text-slate-600 md:flex-row">
                         <label htmlFor="selectVoice">Select Voice:</label>
                         <select
                             className=" rounded border-2 border-slate-400 p-1 text-sm font-semibold text-slate-600 disabled:border-slate-200 disabled:text-slate-300"
@@ -100,7 +106,35 @@ function App() {
                             ))}
                         </select>
                     </div>
+                    <div className="flex flex-col items-center justify-center gap-1 text-slate-600 md:flex-row">
+                        <label htmlFor="selectStory">Select Story:</label>
+                        <select
+                            className=" rounded border-2 border-slate-400 p-1 text-sm font-semibold text-slate-600 disabled:border-slate-200 disabled:text-slate-300"
+                            title="Select story"
+                            id="selectStory"
+                            onChange={handleStoryChange}
+                            disabled={playState !== "stopped"}
+                        >
+                            {stories.map((story, index) => (
+                                <option
+                                    key={story.id}
+                                    value={index}
+                                    selected={selectedStory === index}
+                                >
+                                    {story.title}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
                 </form>
+                {/* Story Image */}
+                <section className="mx-auto flex h-40 w-3/4 items-center justify-center rounded-lg border-2 border-slate-200 p-1 md:h-64 md:w-1/3">
+                    <img
+                        className="max-h-full max-w-full rounded-lg"
+                        src={stories[selectedStory].imageUrl}
+                        alt={`${stories[selectedStory].title}`}
+                    />
+                </section>
                 {/* Control Section */}
                 <section className="mx-auto flex items-center justify-center gap-4 rounded border-2 border-slate-400 px-3 py-1">
                     <h3 className="text-md font-semibold text-slate-600 md:text-xl">

@@ -97,7 +97,7 @@ export const stories: Story[] = [
         url: "https://kathakids.com/mythology-for-children/krishna-stories/krishna-in-sudamas-village/",
         imageUrl: "https://kathakids.com/static/story-images/2019/03/krishna_sudama_village-1160x619.jpg",
         title: "Krishna in Sudama's village",
-        content: `his wife Rukmini, received him with affection. They persuaded Sudama to stay with them for a few days. Then they took him back to his village in their chariot.
+        content: `When Sudama went to Dwaraka, his childhood friend Sri Krishna and his wife Rukmini, received him with affection. They persuaded Sudama to stay with them for a few days. Then they took him back to his village in their chariot.
 
         Meanwhile, in the village, word spread that Sri Krishna was coming to their village. Villagers began to gather in Sudama's cottage.
         
