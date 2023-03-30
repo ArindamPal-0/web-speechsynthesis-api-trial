@@ -14,6 +14,8 @@ function App() {
     const [selectedVoice, setSelectedVoice] = useState("");
     const [selectedStory, setSelectedStory] = useState(0);
 
+    // https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesisUtterance/end_event
+
     useEffect(() => {
         setPlayState("stopped");
         speechSynthesis.cancel();
@@ -79,19 +81,19 @@ function App() {
     }
 
     return (
-        <div className="container mx-auto flex min-h-screen touch-pan-x touch-pan-y select-none flex-col items-center justify-center gap-5 md:gap-10">
+        <div className="mx-auto flex min-h-screen touch-pan-x touch-pan-y select-none flex-col items-center justify-center gap-5 md:gap-10">
             <header>
                 <h1 className="text-2xl font-bold text-slate-600 underline md:text-3xl">
                     Speech Synthesis!
                 </h1>
             </header>
-            <main className="container flex flex-col gap-3 md:gap-5">
+            <main className="flex w-full flex-col gap-3 md:gap-5">
                 {/* Form Section */}
-                <form className="flex w-full flex-col items-center justify-start gap-3 md:gap-5">
+                <form className="flex flex-col items-center justify-start gap-3 md:gap-5">
                     <div className="flex flex-col items-center justify-center gap-1 text-slate-600 md:flex-row">
                         <label htmlFor="selectVoice">Select Voice:</label>
                         <select
-                            className=" rounded border-2 border-slate-400 p-1 text-sm font-semibold text-slate-600 disabled:border-slate-200 disabled:text-slate-300"
+                            className="rounded border-2 border-slate-400 p-1 text-sm font-semibold text-slate-600 disabled:border-slate-200 disabled:text-slate-300"
                             title="Select voice"
                             id="selectVoice"
                             onChange={handleChangeVoice}
@@ -128,7 +130,7 @@ function App() {
                     </div>
                 </form>
                 {/* Story Image */}
-                <section className="mx-auto flex h-40 w-3/4 items-center justify-center rounded-lg border-2 border-slate-200 p-1 md:h-64 md:w-1/3">
+                <section className="mx-auto flex h-40 w-64 items-center justify-center rounded-lg border-2 border-slate-200 p-1 md:h-64 md:w-96">
                     <img
                         className="max-h-full max-w-full rounded-lg"
                         src={stories[selectedStory].imageUrl}
